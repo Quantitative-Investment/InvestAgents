@@ -135,7 +135,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Multi-agent systems based on large language models (LLMs) have made significant progress in automating the solution of real-world problems. In the financial field, most of the existing research is limited to single-agent systems solving a single task or multi-agent frameworks with independent data collection, lacking exploration in simulating the trading pipeline of real-world trading firms. This limits the system from capturing potential gains from real-world trading processes that have been optimized through practical experience. InvestAgents implements an automated multi-agent trading framework by simulating the investment processes of trading firms. This framework assigns diverse roles to LLM-based agents, such as fundamental analysts, sentiment analysts, and technical analysts, who are responsible for financial analysis, market sentiment capture, and trend prediction respectively. In decision-making, there are three components: 1. Agents holding bullish and bearish arguments, along with the Debating Facilitator Agent; 2. Investor Agent; 3. Risk Management Agents with differing investment attitudes and Risk Manager Agent. They collaborate to make trading decisions. The detailed architecture design and experimental results show that InvestAgents can provide valuable and in-depth investment insights from multiple perspectives, assisting hedge funds, investment banks in making trading decisions and improving trading efficiency.
+            In the financial field, most of the existing research is limited to single-agent systems solving a single task or multi-agent frameworks with independent data collection, lacking exploration in simulating the trading pipeline of real-world trading firms. This limits the system from capturing potential gains from real-world trading processes that have been optimized through practical experience. InvestAgents implements an automated multi-agent trading framework by simulating the investment processes of trading firms. This framework assigns diverse roles to LLM-based agents, such as fundamental analysts, sentiment analysts, and technical analysts. In decision-making, there are four components: 1. Researcher Agents holding bullish and bearish arguments, and Research Manager Agent; 2. Investor Agent; 3. Risk Management Agents with differing investment attitudes; 4. Fund Manager Agent. They collaborate to make trading decisions. The detailed architecture design and experimental results show that InvestAgents can provide valuable and in-depth investment insights from multiple perspectives, assisting hedge funds, investment banks in making trading decisions and improving trading efficiency.
           </p>
         </div>
       </div>
@@ -150,107 +150,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
-          <p>
-            <b>The Architecture of OneLLM</b>, which consists of modality tokenizers, a universal encoder, a universal
-            projection module (UPM)
-            and an LLM.
-          </p>
-
           <img src="static/images/overview.png" alt="MY ALT TEXT">
-
-          <p>
-            The modality tokenizer is a 2D/1D convolution layer to transform the input signal into a sequence of
-            tokens. For simplicity,
-            we omit video, depth/normal map tokenizers. The universal encoder is a frozen vision-language model (i.e.
-            CLIP) to extract high
-            dimensional features. The UPM is composed of several projection experts and modality routers to align the
-            input signal with language.
-            For the alignment stage, we train modality tokenizers and UPM, and keep LLM frozen. For the instruction
-            tuning stage, we only train the
-            LLM and keep other models frozen. In a forward pass of UPM, we concatenate the input and modality tokens
-            as input. Then we only take
-            the modality tokens as a summary of the input signal and feed it into LLM for multimodal understanding.
-          </p>
-
-          <h3 class="title is-4">Analyst Team</h3>
-          <div class="content has-text-justified">
-            <p>The Analyst Team gathers and analyzes market data across various domains:</p>
-            <ul>
-              <li><strong>Fundamental Analysts:</strong> Assess company fundamentals to identify undervalued or overvalued stocks.</li>
-              <li><strong>Sentiment Analysts:</strong> Analyze social media and public sentiment to gauge market mood.</li>
-              <li><strong>News Analysts:</strong> Evaluate news and macroeconomic indicators to predict market movements.</li>
-              <li><strong>Technical Analysts:</strong> Use technical indicators to forecast price trends and trading opportunities.</li>
-            </ul>
-            <p>Combined, their insights provide a holistic market view, feeding into the Researcher Team for further evaluation.</p>
-            
-            <!-- <figure class="image">
-              <img src="./static/images/Analyst.png" alt="TradingAgents Analyst Team" style="width: 65%;">
-              <figcaption class="has-text-centered"><strong>Figure 2:</strong> TradingAgents Analyst Team</figcaption>
-            </figure> -->
-          </div>
-          
-          <h3 class="title is-4">Researcher Team</h3>
-          <div class="content has-text-justified">
-            <p>The Researcher Team critically evaluates analyst data through a dialectical process involving bullish and bearish perspectives. This debate ensures balanced analysis, identifying both opportunities and risks to inform trading strategies.</p>
-            
-            <!-- <div class="columns"> -->
-              <!-- <div class="column">
-                <figure class="image">
-                  <img src="./static/images/Researcher.png" alt="TradingAgents Researcher Team">
-                  <figcaption class="has-text-centered"><strong>Figure 3:</strong> TradingAgents Researcher Team</figcaption>
-                </figure>
-              </div> -->
-              <!-- <div class="column">
-                <figure class="image">
-                  <img src="./static/images/Trader.png" alt="TradingAgents Trader Decision-Making Process">
-                  <figcaption class="has-text-centered"><strong>Figure 4:</strong> TradingAgents Trader Decision-Making Process</figcaption>
-                </figure>
-              </div> -->
-              <!-- <div class="column">
-                <figure class="image">
-                  <img src="./static/images/RiskMGMT.png" alt="TradingAgents Risk Management Team Workflow">
-                  <figcaption class="has-text-centered"><strong>Figure 5:</strong> TradingAgents Risk Management Workflow</figcaption>
-                </figure>
-              </div> -->
-            <!-- </div> -->
-            
-            <ul>
-              <li><strong>Bullish Researchers:</strong> Highlight positive market indicators and growth potential.</li>
-              <li><strong>Bearish Researchers:</strong> Focus on risks and negative market signals.</li>
-            </ul>
-            
-            <p>This process ensures a balanced understanding of market conditions, aiding Trader Agents in making informed decisions.</p>
-          </div>
-          
-          <h3 class="title is-4">Trader Agents</h3>
-          <div class="content has-text-justified">
-            <p>Trader Agents execute decisions based on comprehensive analyses. They evaluate insights from analysts and researchers to determine optimal trading actions, balancing returns and risks in a dynamic market environment.</p>
-            
-            <ul>
-              <li>Assessing analyst and researcher recommendations.</li>
-              <li>Determining trade timing and size.</li>
-              <li>Executing buy/sell orders.</li>
-              <li>Adjusting portfolios in response to market changes.</li>
-            </ul>
-            
-            <p>Precision and strategic thinking are essential for their role in maximizing performance.</p>
-          </div>
-          
-          <h3 class="title is-4">Risk Management Team</h3>
-          <div class="content has-text-justified">
-            <p>The Risk Management Team oversees the firm's exposure to market risks, ensuring trading activities stay within predefined limits.</p>
-            
-            <ul>
-              <li>Assessing market volatility and liquidity.</li>
-              <li>Implementing risk mitigation strategies.</li>
-              <li>Advising Trader Agents on risk exposures.</li>
-              <li>Aligning portfolio with risk tolerance.</li>
-            </ul>
-            
-            <p>They ensure financial stability and safeguard assets through effective risk control.</p>
-            
-            <p>All agents utilize the ReAct prompting framework, facilitating a collaborative and dynamic decision-making process reflective of real-world trading systems.</p>
-          </div>
         </div>
       </div>
     </div>
@@ -261,11 +161,11 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-12">
-        <h2 class="title is-3">Qualitative Results on Eight Modalities.</h2>
+        <h2 class="title is-3">Qualitative Results for Multiple Tickers with Different Trading Decisions.</h2>
         <div class="content has-text-justified">
         </div>
         <p>
-          Please note that all demo inputs are from the web or the testing set of corresponding modalities.
+          https://github.com/cszhengyh/InvestAgents/tree/main/examples
         </p>
       </div>
     </div>
