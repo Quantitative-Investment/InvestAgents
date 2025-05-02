@@ -148,21 +148,41 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Method</h2>
+        <h2 class="title is-3">Framework</h2>
         <div class="content has-text-justified">
           <p>
             <b>InvestAgents Overall Framework.</b> The framework bridges existing gaps by emulating multi-agent decision-making processes of professional trading teams. It incorporates specialized agents tailored for distinct trading functions, inspired by the organizational structures of institutional trading firms.
-            and an LLM.
           </p>
 
           <img src="static/images/overview.png" alt="MY ALT TEXT">
 
           <ul>
-            <li><strong>Analyst Team.</strong> Collect multi-source heterogeneous data and produce objective analytical reports.</li>
-            <li><strong>Researcher Team.</strong> Using these reports as evidence, bullish and bearish researchers engage in debates to uncover in-depth insights on investment assets and the research manager summarizes key debate points and proposes an investment plan.</li>
-            <li><strong>Investor.</strong> Draft a trading proposal by integrating the critical arguments from both bullish and bearish researchers along with the research manager's investment plan.</li>
-            <li><strong>Risk Management Team.</strong> Risk analysts with aggressive, conservative, and neutral investment stances debate potential risks of the assets, leveraging the analytical reports as evidence.</li>
-            <li><strong>Fund Manager.</strong> Synthesize the risk analysts' key arguments, refine the trading proposal, and finalize the trading decision.</li>
+            <li><strong>Analyst Team.</strong> Collect multi-source heterogeneous data and produces objective analytical reports.</li>
+            <li><strong>Researcher Team.</strong> Using preprocessed data and analytical reports as evidence, bullish and bearish researchers engage in debates to uncover in-depth insights on investment assets. The research manager then summarizes key debate points and proposes investment recommendations.</li>
+            <li><strong>Investor.</strong> Draft a investment plan by integrating the preprocessed data, analytical reports, the critical debate records from both bullish and bearish researchers along with the research manager's investment recommendation, and submit it to risk manager for risk review.</li>
+            <li><strong>Risk Management Team.</strong> Risk analysts with aggressive, conservative, and neutral investment stances debate potential risks of the assets, leveraging the analytical reports as foundational evidence.</li>
+            <li><strong>Risk Manager.</strong> Combine the key arguments of the risk analysts and the risk exposure check results (such as the maximum drawdown threshold, stop loss order, etc.) to conduct risk assessment and make investment plan adjustment suggestions to the investor.</li>
+          </ul>
+          <!-- communication protocol -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Structured Communication Protocol</h2>
+        <div class="content has-text-justified">
+          <p>
+            InvestAgents introduces a structured communication protocol for managing agent interactions, in which agents communicate primarily via structured documents and standardized diagrams (e.g., flowcharts, sequence diagrams):
+          </p>
+          <ul>
+            <li><strong>JSON Schema–based output definitions.</strong> Collect multi-source heterogeneous data and produces objective analytical reports.</li>
+            <li><strong>Global publish-subscribe information pool.</strong> Using preprocessed data and analytical reports as evidence, bullish and bearish researchers engage in debates to uncover in-depth insights on investment assets. The research manager then summarizes key debate points and proposes investment recommendations.</li>
+            <li><strong>Dependency-driven execution.</strong> Draft a investment plan by integrating the preprocessed data, analytical reports, the critical debate records from both bullish and bearish researchers along with the research manager's investment recommendation, and submit it to risk manager for risk review.</li>
           </ul>
           <!-- communication protocol -->
         </div>
